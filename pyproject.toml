@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "docshelper"
+version = "0.1.0"
+description = "CLI tool to crawl docs and ask questions with RAG"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{name = "Abdelrahman"}]
+dependencies = [
+	"aiohttp==3.13.3",
+	"beautifulsoup4==4.14.3",
+	"chromadb==1.5.4",
+	"httpx==0.28.1",
+	"langsmith>=0.1.0",
+	"openai==2.26.0",
+	"python-dotenv==1.2.2",
+	"typer==0.24.1",
+]
+
+[project.optional-dependencies]
+dev = [
+	"pytest==8.3.5",
+	"ruff==0.11.0",
+	"black==25.1.0",
+]
+
+[project.scripts]
+docshelper = "docshelper.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
