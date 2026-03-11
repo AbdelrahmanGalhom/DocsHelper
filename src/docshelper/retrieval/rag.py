@@ -44,10 +44,17 @@ class RAGEngine:
 
         context_text = "\n\n".join(context_blocks)
         prompt = (
-            "Answer the question only using the context. "
-            "If the answer is missing, say you do not have enough context.\n\n"
-            f"Question:\n{question}\n\n"
-            f"Context:\n{context_text}"
+            "You are answering a documentation question for software engineers.\n"
+            "Use only the CONTEXT BLOCKS below.\n"
+            "If the context is missing, incomplete, or ambiguous, say what is known and what is missing.\n"
+            "If there is not enough information to answer, respond exactly: "
+            "'I do not have enough context to answer this question.'\n"
+            "Do not invent APIs, parameters, versions, or behavior.\n"
+            "When possible, mention the relevant source title or URL from the context.\n\n"
+            "QUESTION:\n"
+            f"{question}\n\n"
+            "CONTEXT BLOCKS:\n"
+            f"{context_text}"
         )
 
         answer = self.llm_provider.answer(prompt)
